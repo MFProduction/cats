@@ -1,0 +1,10 @@
+<h1>Funerals</h1>
+<%= month_calendar events: @funerals do |date, funerals| %>
+  <%= link_to date.day, day_path(date) %>
+          <div class="f" >
+          <% funerals.each do |funeral| %>
+          <%= funeral.start_time.hour %>:00 - <%= funeral.cat_name %>
+          <br>
+          </div >
+      <% end %>
+<% end %>
