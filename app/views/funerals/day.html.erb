@@ -6,25 +6,31 @@
   <thead>
     <tr>
       <th>Hour</th>
-        <th>Slot</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @schedule.each do |hour| %>
+      <th>Slot</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @schedule.each do |s| %>
       <tr>
-        <td><%= hour.first %>:00</td>
-        <% if hour.second %>
-            <td>cat name:<%= hour.second.cat_name%></td>
+        <td><%= s.first.to_datetime.strftime("%l %P") %></td>
+        <% if s.second %>
+          <td><big><%= s.second.cat_name%></big></td>
+          <% if s.second.customer_id == current_customer.id && s.second.start_time > Time.now %>
+            <td><%= link_to 'Cancel',  { action: :destroy, id: s.second.id }, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger btn-sm" %></td>
           <% else %>
-            <% if @date >= Time.now  %>
-              <td><%= link_to "Book", new_funeral_path(date: @date, hour: hour.first)%></td>
-            <% else %>
-              <td></td>
-            <% end %>
+            <td><button class="btn btn-danger btn-sm disabled">Cancel</button></td>
+          <% end %>
+        <% else %>
+          <% if s.first > Time.now+1.hour  %>
+            <td>Free</td>
+            <td><%= link_to "Book", new_funeral_path(date:s.first.to_datetime), class:"btn btn-success"%></td>
+          <% else %>
+            <td></td>
+            <td></td>
+          <% end %>
         <% end %>
-
       </tr>
-      <% end %>
-
-    </tbody>
-  </table>
+    <% end %>
+  </tbody>
+</table>

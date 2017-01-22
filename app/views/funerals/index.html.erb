@@ -1,10 +1,10 @@
 <h1>Funerals</h1>
 <%= month_calendar events: @funerals do |date, funerals| %>
-  <%= link_to date.day, day_path(date) %>
-          <div class="f" >
-          <% funerals.each do |funeral| %>
-          <%= funeral.start_time.hour %>:00 - <%= funeral.cat_name %>
-          <br>
-          </div >
-      <% end %>
+  <%= link_to date.day, day_path(date), class:"btn btn-primary btn-xs" %>
+  <div>
+    <% funerals.each do |funeral| %>
+      <small>&#10013;<%= funeral.start_time.strftime("%l%P") %> - <%= funeral.cat_name %></small>
+      <br>
+    <% end %>
+  </div >
 <% end %>

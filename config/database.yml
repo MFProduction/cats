@@ -3,13 +3,20 @@ development:
   encoding: unicode
   database: cemetery_development
   pool: 5
-  username: postgres
-  password:
+  username: <%= ENV['DATABASE_USER'].present? || 'postgres' %>
+  password: <%= ENV['DATABASE_PASS'] || '' %>
 
 test:
   adapter: postgresql
   encoding: unicode
   database: cemetery_test
   pool: 5
-  username: postgres
-  password:
+  username: <%= ENV['DATABASE_USER'].present? || 'postgres' %>
+  password: <%= ENV['DATABASE_PASS'] || '' %>
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: cemetery_production
+  username: cemetery
+  password: <%= ENV['CEMETERY_DATABASE_PASSWORD'] %>

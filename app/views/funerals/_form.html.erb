@@ -1,25 +1,13 @@
 <%= form_for(funeral) do |f| %>
-  <% if funeral.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(funeral.errors.count, "error") %> prohibited this funeral from being saved:</h2>
-
-      <ul>
-      <% funeral.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <div class="field form-group">
     <%= f.label :cat_name %>
     <%= f.text_field :cat_name, class: "form-control" %>
   </div>
-  <h4><%= @date.strftime("Book Time: %B %d at %Y-%H:00") %></h4>
+  <h4><%= @date.strftime("Funeral Time: %B %d %Y at %l %P") %></h4>
   <dir class="hidden">
     <%= f.datetime_select :start_time, default: @date, class: "form-control" %>
   </dir>
   <div class="actions">
-  <%= f.submit 'Book', class: 'btn btn-success' %>
+    <%= f.submit 'Book', class: 'btn btn-success' %>
   </div>
 <% end %>

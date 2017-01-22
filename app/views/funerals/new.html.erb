@@ -1,4 +1,4 @@
 <h1>New Booking</h1>
 <%= render 'form', funeral: @funeral %>
 <br>
-<%= link_to 'Back', funerals_path, class: 'btn btn-primary' %>
+<%= link_to 'Back', day_path(@date.to_date), class: 'btn btn-primary' %>
