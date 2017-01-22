@@ -4,7 +4,7 @@ class Funeral < ApplicationRecord
 
   validates :cat_name, presence: true
   validate :cant_do_past
-  validate :slot_taken #TODO: only works for first hour because of timezone
+  #validate :slot_taken #TODO: only works for first hour because of timezone
 
   private
 
